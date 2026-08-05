@@ -20,7 +20,7 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&amp;display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260805b" />
+    <link rel="stylesheet" href="styles.css?v=20260805c" />
   </head>
   <body>
     <main>
@@ -32,10 +32,6 @@
           <a href="#" data-placeholder onclick="return false">Paper</a>
           <a href="#" data-placeholder onclick="return false">Code</a>
         </nav>
-        <p class="tldr">
-          <strong>TL;DR:</strong> Vid2WAM distills video diffusion priors into a compact, teacher-free WAM that
-          generalizes better with fewer expert demonstrations.
-        </p>
       </header>
 
       <section class="container lead-teaser">
@@ -53,16 +49,25 @@
         </figure>
       </section>
 
-      <section class="container project-summary" aria-label="Paper summary">
-        <p>
-          <b>Vid2WAM learns robot actions from imagined futures.</b> A video diffusion teacher generates
-          task-conditioned rollouts, while an inverse dynamics model turns those futures into embodiment-specific
-          pseudo-actions.
-        </p>
-        <p>
-          Source-aware residual adaptation combines synthetic and real supervision without letting noisy pseudo-labels
-          dominate training. The teacher and IDM are then discarded, leaving only the compact student for deployment.
-        </p>
+      <section class="container project-summary" aria-label="Contributions">
+        <ul class="contribution-list">
+          <li>
+            <strong><em>Video-Foundation-Model-to-WAM Distillation:</em></strong> We rethink the source of future
+            supervision for World Action Models and formulate a video-foundation-model-to-WAM distillation framework,
+            using generated futures from video foundation models as direct supervision beyond recorded target-task
+            expert trajectories.
+          </li>
+          <li>
+            <strong><em>Dual-Channel, Source-Aware Transfer:</em></strong> We introduce a dual-channel, source-aware
+            transfer strategy that jointly distills future visual dynamics and IDM-inferred actions, with residual
+            adapters reducing interference from noisy pseudo-actions.
+          </li>
+          <li>
+            <strong><em>Generalization with Efficient Inference:</em></strong> We demonstrate in simulation and
+            real-world experiments that Vid2WAM improves expert-demonstration efficiency and novel-task generalization,
+            while retaining efficient student-only inference.
+          </li>
+        </ul>
       </section>
 
       <section class="container project-section">
