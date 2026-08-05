@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Vid2WAM distills video diffusion priors into a compact World Action Model for efficient robot control."
+    />
+    <meta property="og:title" content="Vid2WAM: Distilling Video Diffusion Priors into World Action Models" />
+    <meta
+      property="og:description"
+      content="Offline video-to-action distillation for data-efficient and generalizable robot policies."
+    />
+    <meta property="og:image" content="assets/og-simple.png" />
+    <title>Vid2WAM</title>
+    <link rel="stylesheet" href="styles.css?v=20260804k" />
+  </head>
+  <body>
+    <main>
+      <header class="hero container">
+        <h1><span>Vid2WAM:</span> Distilling Video Diffusion Priors into World Action Models</h1>
+        <p class="authors">Anonymous Authors</p>
+        <p class="affiliation">Anonymous submission · 2026</p>
+        <nav class="links" aria-label="Project resources">
+          <a href="#" data-placeholder onclick="return false">Paper</a>
+          <a href="#" data-placeholder onclick="return false">Code</a>
+        </nav>
+      </header>
+
+      <section class="container lead-teaser">
+        <figure class="teaser">
+          <div class="teaser-crop">
+            <img
+              src="assets/overview.png"
+              alt="Vid2WAM overview comparing direct video-model control, a standard World Action Model, and offline distillation into a compact action policy."
+            />
+          </div>
+          <figcaption>
+            Vid2WAM transfers predictive video priors into an efficient World Action Model through offline
+            distillation, improving novel-task success without running the teacher during deployment.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section class="container project-summary" aria-label="Paper summary">
+        <p>
+          <b>Vid2WAM learns robot actions from imagined futures.</b> A video diffusion teacher generates
+          task-conditioned rollouts, while an inverse dynamics model turns those futures into embodiment-specific
+          pseudo-actions.
+        </p>
+        <p>
+          Source-aware residual adaptation combines synthetic and real supervision without letting noisy pseudo-labels
+          dominate training. The teacher and IDM are then discarded, leaving only the compact student for deployment.
+        </p>
+      </section>
+
+      <section class="container project-section">
+        <h2>Abstract</h2>
+        <p class="abstract">
+          World Action Models improve robot policy learning by jointly modeling future visual dynamics and actions,
+          but their scalability and generalization remain constrained by costly expert demonstrations. Vid2WAM is an
+          offline distillation framework that transfers visual diffusion priors from a large video foundation model
+          into a compact WAM student. Teacher-generated future rollouts supervise the student’s future prediction
+          branch, while an inverse dynamics model recovers embodiment-specific pseudo-actions for action learning.
+          Source-aware residual action adaptation robustly combines synthetic and real supervision. During inference,
+          the video teacher and IDM are discarded, leaving only the compact student. Simulation and real-world
+          experiments demonstrate improved novel-task generalization and data efficiency while preserving low-latency
+          inference.
+        </p>
+      </section>
+
+      <section class="container project-section">
+        <h2>The Framework of Vid2WAM</h2>
+        <figure class="figure-frame">
+          <img
+            src="assets/method.png"
+            alt="Vid2WAM training architecture with a frozen video teacher and inverse dynamics model supervising a trainable student, followed by student-only inference."
+          />
+          <figcaption class="framework-caption">
+            Teacher-generated future latents and IDM-derived pseudo-actions complement real demonstrations during
+            training. At inference time, the video teacher and IDM are discarded, leaving only the student action policy.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section class="container project-section" id="results">
+        <h2>Simulation Results</h2>
+        <p class="section-intro">
+          Vid2WAM consistently improves task success in low-data and novel-task settings. All charts below visualize
+          the values reported in the paper tables; success rate is in percent and higher is better.
+        </p>
+
+        <div class="legend" aria-label="Chart legend">
+          <span><i class="color-pi"></i> π<sub>0.5</sub></span>
+          <span><i class="color-motus"></i> Motus</span>
+          <span><i class="color-fast"></i> Fast-WAM</span>
+          <span><i class="color-ours"></i> Vid2WAM</span>
+        </div>
+
+        <div class="chart-grid">
+          <figure class="chart-card">
+            <div class="chart-heading">
+              <h3>RoboTwin 2.0 · Novel Tasks</h3>
+              <p>15 unseen tasks only</p>
+            </div>
+            <div class="chart" role="img" aria-label="RoboTwin novel subset success rates under clean and randomized evaluation">
+              <div class="grid-lines" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+              <div class="bar-group">
+                <div class="bars">
+                  <div class="bar pi" style="--value:46.5%"><span>46.5</span></div>
+                  <div class="bar motus" style="--value:48.9%"><span>48.9</span></div>
+                  <div class="bar fast" style="--value:45%"><span>45.0</span></div>
+                  <div class="bar ours" style="--value:54.7%"><span>54.7</span></div>
+                </div>
+                <strong>Clean</strong>
+              </div>
+              <div class="bar-group">
+                <div class="bars">
+                  <div class="bar pi" style="--value:46.3%"><span>46.3</span></div>
+                  <div class="bar motus" style="--value:51.5%"><span>51.5</span></div>
+                  <div class="bar fast" style="--value:42.8%"><span>42.8</span></div>
+                  <div class="bar ours" style="--value:55.3%"><span>55.3</span></div>
+                </div>
+                <strong>Randomized</strong>
+              </div>
+            </div>
+            <figcaption>Vid2WAM improves over Fast-WAM by 9.7 and 12.5 points on unseen tasks.</figcaption>
+          </figure>
+
+          <figure class="chart-card">
+            <div class="chart-heading">
+              <h3>LIBERO · Average Success</h3>
+              <p>Four task suites</p>
+            </div>
+            <div class="chart" role="img" aria-label="Average LIBERO success rates in low-data and novel regimes">
+              <div class="grid-lines" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+              <div class="bar-group">
+                <div class="bars">
+                  <div class="bar pi" style="--value:86.9%"><span>86.9</span></div>
+                  <div class="bar motus" style="--value:87.7%"><span>87.7</span></div>
+                  <div class="bar fast" style="--value:87.3%"><span>87.3</span></div>
+                  <div class="bar ours" style="--value:89.7%"><span>89.7</span></div>
+                </div>
+                <strong>Low-data</strong>
+              </div>
+              <div class="bar-group">
+                <div class="bars">
+                  <div class="bar pi" style="--value:77.9%"><span>77.9</span></div>
+                  <div class="bar motus" style="--value:72.1%"><span>72.1</span></div>
+                  <div class="bar fast" style="--value:76.7%"><span>76.7</span></div>
+                  <div class="bar ours" style="--value:78.3%"><span>78.3</span></div>
+                </div>
+                <strong>Novel</strong>
+              </div>
+            </div>
+            <figcaption>Vid2WAM achieves the best average result in both evaluation regimes.</figcaption>
+          </figure>
+
+          <figure class="chart-card">
+            <div class="chart-heading">
+              <h3>LIBERO-Plus · Robustness</h3>
+              <p>Overall across seven perturbations</p>
+            </div>
+            <div class="chart three-series" role="img" aria-label="Overall LIBERO-Plus success rates in low-data and novel regimes">
+              <div class="grid-lines" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+              <div class="bar-group">
+                <div class="bars">
+                  <div class="bar motus" style="--value:27.9%"><span>27.9</span></div>
+                  <div class="bar fast" style="--value:33.6%"><span>33.6</span></div>
+                  <div class="bar ours" style="--value:39%"><span>39.0</span></div>
+                </div>
+                <strong>Low-data</strong>
+              </div>
+              <div class="bar-group">
+                <div class="bars">
+                  <div class="bar motus" style="--value:41.9%"><span>41.9</span></div>
+                  <div class="bar fast" style="--value:45.8%"><span>45.8</span></div>
+                  <div class="bar ours" style="--value:48.1%"><span>48.1</span></div>
+                </div>
+                <strong>Novel</strong>
+              </div>
+            </div>
+            <figcaption>Vid2WAM remains strongest under camera, robot, language, lighting, and scene perturbations.</figcaption>
+          </figure>
+
+          <figure class="chart-card">
+            <div class="chart-heading">
+              <h3>Real Robot · Novel Tasks</h3>
+              <p>20 trials per task</p>
+            </div>
+            <div class="chart real-chart" role="img" aria-label="Real-world success rates on three novel bimanual tasks">
+              <div class="grid-lines" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+              <div class="bar-group">
+                <div class="bars">
+                  <div class="bar pi" style="--value:0%"><span>0</span></div>
+                  <div class="bar motus" style="--value:10%"><span>10</span></div>
+                  <div class="bar fast" style="--value:5%"><span>5</span></div>
+                  <div class="bar ours" style="--value:30%"><span>30</span></div>
+                </div>
+                <strong>Pick test tube</strong>
+              </div>
+              <div class="bar-group">
+                <div class="bars">
+                  <div class="bar pi" style="--value:0%"><span>0</span></div>
+                  <div class="bar motus" style="--value:0%"><span>0</span></div>
+                  <div class="bar fast" style="--value:5%"><span>5</span></div>
+                  <div class="bar ours" style="--value:15%"><span>15</span></div>
+                </div>
+                <strong>Take tissue</strong>
+              </div>
+              <div class="bar-group">
+                <div class="bars">
+                  <div class="bar pi" style="--value:0%"><span>0</span></div>
+                  <div class="bar motus" style="--value:20%"><span>20</span></div>
+                  <div class="bar fast" style="--value:25%"><span>25</span></div>
+                  <div class="bar ours" style="--value:30%"><span>30</span></div>
+                </div>
+                <strong>Tomato basket</strong>
+              </div>
+            </div>
+            <figcaption>Novel tasks receive no target-task real expert trajectories.</figcaption>
+          </figure>
+        </div>
+
+        <figure class="latency-card">
+          <div class="chart-heading">
+            <h3>Inference Latency</h3>
+            <p>Milliseconds per action chunk · RTX 4090</p>
+          </div>
+          <div class="latency-chart" role="img" aria-label="Inference latency comparison in milliseconds">
+            <div class="latency-row"><strong>π<sub>0.5</sub></strong><i class="pi" style="--width:1.57%"></i><span>76.7 ms</span></div>
+            <div class="latency-row"><strong>Fast-WAM</strong><i class="fast" style="--width:4.27%"></i><span>209.1 ms</span></div>
+            <div class="latency-row"><strong>Vid2WAM</strong><i class="ours" style="--width:4.34%"></i><span>212.5 ms</span></div>
+            <div class="latency-row"><strong>Motus</strong><i class="motus" style="--width:49.34%"></i><span>2,414.9 ms</span></div>
+            <div class="latency-row"><strong>Teacher Policy</strong><i class="teacher" style="--width:100%"></i><span>4,894.5 ms</span></div>
+          </div>
+          <figcaption>Offline distillation preserves Fast-WAM-level latency and is about 23× faster than online teacher control.</figcaption>
+        </figure>
+      </section>
+
+      <section class="container project-section">
+        <h2>Qualitative Future Predictions</h2>
+        <p class="section-intro">
+          From identical initial observations and language instructions, Vid2WAM more often predicts task completion
+          beyond intermediate grasping or opening steps.
+        </p>
+        <figure class="figure-frame">
+          <img
+            src="assets/future-comparison.png"
+            alt="Future predictions from Fast-WAM and Vid2WAM for two representative novel manipulation tasks."
+          />
+          <figcaption>Fast-WAM (top) and Vid2WAM (bottom) future predictions for representative novel tasks.</figcaption>
+        </figure>
+
+        <h3 class="result-subheading">Teacher-Generated Rollouts</h3>
+        <p class="section-intro">
+          Six representative rollouts cover LIBERO, RoboTwin, and real-world settings across low-data, novel-task,
+          clean, and randomized conditions.
+        </p>
+        <figure class="figure-frame supplement-figure">
+          <img
+            src="assets/teacher-rollouts.png"
+            alt="Six teacher-generated rollout examples from LIBERO, RoboTwin, and real-world tasks, each shown as six temporally ordered keyframes."
+          />
+          <figcaption>
+            Each row presents six temporally ordered keyframes conditioned on the displayed language instruction.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section class="container project-section">
+        <h2>Real-World Experiments</h2>
+        <p class="section-intro">
+          Vid2WAM is evaluated on nine contact-rich bimanual tasks, including novel object-level and behavior-level
+          tasks without target-task expert trajectories.
+        </p>
+        <figure class="figure-frame">
+          <img src="assets/realworld.png" alt="Vid2WAM rollouts on representative seen and novel real-world tasks." />
+          <figcaption>Representative seen and novel real-world executions. Frames progress from left to right.</figcaption>
+        </figure>
+        <figure class="video-figure">
+          <video class="realworld-video" controls autoplay muted loop playsinline preload="metadata" poster="assets/realworld.png">
+            <source src="assets/realworld-demo.mp4" type="video/mp4" />
+            Your browser does not support the video element.
+          </video>
+          <figcaption>Video demonstrations of all real-world tasks, comparing Vid2WAM with Fast-WAM.</figcaption>
+        </figure>
+      </section>
+
+      <footer class="container">
+        <p><b>Vid2WAM</b> · Distilling Video Diffusion Priors into World Action Models</p>
+        <p>Author and code links will be added after the anonymous review period.</p>
+      </footer>
+    </main>
+  </body>
+</html>
