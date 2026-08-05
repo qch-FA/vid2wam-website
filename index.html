@@ -14,7 +14,7 @@
     />
     <meta property="og:image" content="assets/og-simple.png" />
     <title>Vid2WAM</title>
-    <link rel="stylesheet" href="styles.css?v=20260804k" />
+    <link rel="stylesheet" href="styles.css?v=20260805a" />
   </head>
   <body>
     <main>
@@ -26,6 +26,10 @@
           <a href="#" data-placeholder onclick="return false">Paper</a>
           <a href="#" data-placeholder onclick="return false">Code</a>
         </nav>
+        <p class="tldr">
+          <strong>TL;DR:</strong> Vid2WAM distills video diffusion priors into a compact, teacher-free WAM that
+          generalizes better with fewer expert demonstrations.
+        </p>
       </header>
 
       <section class="container lead-teaser">
@@ -58,20 +62,25 @@
       <section class="container project-section">
         <h2>Abstract</h2>
         <p class="abstract">
-          World Action Models improve robot policy learning by jointly modeling future visual dynamics and actions,
-          but their scalability and generalization remain constrained by costly expert demonstrations. Vid2WAM is an
-          offline distillation framework that transfers visual diffusion priors from a large video foundation model
-          into a compact WAM student. Teacher-generated future rollouts supervise the student’s future prediction
-          branch, while an inverse dynamics model recovers embodiment-specific pseudo-actions for action learning.
-          Source-aware residual action adaptation robustly combines synthetic and real supervision. During inference,
-          the video teacher and IDM are discarded, leaving only the compact student. Simulation and real-world
-          experiments demonstrate improved novel-task generalization and data efficiency while preserving low-latency
-          inference.
+          World Action Models (WAMs) improve robot policy learning by jointly modeling future visual dynamics and
+          actions. However, their scalability and generalization remain constrained by their reliance on costly expert
+          demonstrations. We challenge this by asking whether future supervision for WAMs must originate from
+          target-task expert trajectories. In this paper, we propose <strong>Vid2WAM</strong>, an offline distillation
+          framework that transfers visual diffusion priors from a large video foundation model into a compact WAM
+          student. Given an observation and language instruction, Vid2WAM distills supervision through two
+          complementary channels: task-conditioned future rollouts directly supervise the student's future prediction
+          branch, while an inverse dynamics model recovers embodiment-specific pseudo-actions for action learning. To
+          robustly integrate synthetic and real supervision, we introduce <em>source-aware residual action
+          adaptation</em> that learns source-specific corrections around a shared action backbone and mitigates
+          interference from noisy pseudo-actions. During inference, both the video teacher and inverse dynamics model
+          are discarded, leaving only the WAM student for efficient deployment. Simulation and real-world experiments
+          demonstrate that Vid2WAM improves novel-task generalization and data efficiency under limited expert
+          demonstrations while preserving low-latency inference.
         </p>
       </section>
 
-      <section class="container project-section">
-        <h2>The Framework of Vid2WAM</h2>
+      <section class="container project-section framework-section">
+        <h2>Framework</h2>
         <figure class="figure-frame">
           <img
             src="assets/method.png"

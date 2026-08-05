@@ -84,6 +84,16 @@ h1 span { color: var(--blue); }
 
 .links a[data-placeholder] { cursor: default; }
 
+.tldr {
+  max-width: 1080px;
+  margin: 20px auto 0;
+  color: #444;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.tldr strong { color: var(--blue-dark); }
+
 .lead-teaser { padding-top: 42px; }
 
 .realworld-video {
@@ -118,6 +128,10 @@ h2 {
 .project-summary b { color: var(--blue-dark); }
 
 .project-section { padding-top: 72px; }
+
+.framework-section {
+  width: min(calc(100% - 32px), 1240px);
+}
 
 .teaser,
 .figure-frame,
