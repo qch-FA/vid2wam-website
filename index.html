@@ -20,11 +20,23 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&amp;display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260808c" />
+    <link rel="stylesheet" href="styles.css?v=20260808d" />
   </head>
   <body>
+    <nav class="site-nav" aria-label="Section navigation">
+      <div class="site-nav-inner">
+        <a class="site-brand" href="#top">Vid2WAM</a>
+        <div class="site-nav-links">
+          <a href="#abstract">Abstract</a>
+          <a href="#framework">Framework</a>
+          <a href="#results">Simulation Results</a>
+          <a href="#predictions">Future Predictions</a>
+          <a href="#real-world">Real-World</a>
+        </div>
+      </div>
+    </nav>
     <main>
-      <header class="hero container">
+      <header class="hero container" id="top">
         <h1><span>Vid2WAM:</span> Distilling Video Diffusion Priors into World Action Models</h1>
         <p class="authors">
           <span>Chenhao Qiu<sup>1,*</sup></span>,
@@ -86,7 +98,7 @@
         </ul>
       </section>
 
-      <section class="container project-section">
+      <section class="container project-section" id="abstract">
         <h2>Abstract</h2>
         <p class="abstract">
           World Action Models (WAMs) improve robot policy learning by jointly modeling future visual dynamics and
@@ -282,7 +294,7 @@
         </figure>
       </section>
 
-      <section class="container project-section">
+      <section class="container project-section" id="predictions">
         <h2>Qualitative Future Predictions</h2>
         <p class="section-intro">
           From identical initial observations and language instructions, Vid2WAM predicts task completion
@@ -312,7 +324,7 @@
         </figure>
       </section>
 
-      <section class="container project-section">
+      <section class="container project-section" id="real-world">
         <h2>Real-World Experiments</h2>
         <p class="section-intro">
           Vid2WAM is evaluated on nine contact-rich bimanual tasks, including novel object-level and behavior-level

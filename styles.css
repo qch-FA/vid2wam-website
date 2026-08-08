@@ -30,10 +30,75 @@ body {
 img,
 video { display: block; max-width: 100%; }
 
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+}
+
+.site-nav-inner {
+  width: min(calc(100% - 40px), var(--max-width));
+  min-height: 62px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+}
+
+.site-brand {
+  flex: 0 0 auto;
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.site-brand::before {
+  content: "";
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  margin-right: 9px;
+  border-radius: 50%;
+  background: var(--blue);
+}
+
+.site-nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 25px;
+}
+
+.site-nav-links a {
+  padding: 19px 0 17px;
+  border-bottom: 2px solid transparent;
+  color: #526077;
+  font-size: 0.88rem;
+  font-weight: 500;
+  line-height: 1.4;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.site-nav-links a:hover,
+.site-nav-links a:focus-visible {
+  border-bottom-color: var(--blue);
+  color: var(--blue-dark);
+}
+
 .container {
   width: min(calc(100% - 40px), var(--max-width));
   margin: 0 auto;
 }
+
+#top,
+.project-section { scroll-margin-top: 82px; }
 
 .hero {
   padding-top: 68px;
@@ -412,6 +477,25 @@ footer p { margin: 2px 0; }
 
 @media (max-width: 760px) {
   body { font-size: 16px; }
+  .site-nav-inner {
+    width: 100%;
+    min-height: 54px;
+    padding-left: 16px;
+    gap: 18px;
+  }
+  .site-nav-links {
+    min-width: 0;
+    flex: 1 1 auto;
+    justify-content: flex-start;
+    gap: 20px;
+    padding-right: 16px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .site-nav-links::-webkit-scrollbar { display: none; }
+  .site-nav-links a { padding: 15px 0 13px; font-size: 0.82rem; }
+  #top,
+  .project-section { scroll-margin-top: 70px; }
   .hero { padding-top: 44px; }
   .lead-video { padding-top: 42px; }
   .project-summary { padding-top: 24px; text-align: left; }
