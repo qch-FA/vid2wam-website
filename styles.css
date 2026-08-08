@@ -51,15 +51,39 @@ h1 {
 h1 span { color: var(--blue); }
 
 .authors {
+  max-width: 980px;
   margin: 26px 0 0;
+  margin-inline: auto;
   color: var(--blue);
   font-size: 1.15rem;
 }
 
+.authors span { white-space: nowrap; }
+
+.authors sup,
+.affiliation sup,
+.author-notes sup {
+  font-size: 0.68em;
+  line-height: 0;
+  vertical-align: super;
+}
+
 .affiliation {
-  margin: 1px 0 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2px 18px;
+  margin: 7px auto 0;
   color: var(--muted);
   font-size: 0.94rem;
+}
+
+.affiliation span { white-space: nowrap; }
+
+.author-notes {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 0.82rem;
 }
 
 .links {

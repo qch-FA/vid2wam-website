@@ -28,4 +28,4 @@ All links and media use relative paths, so the page works for both `username.git
 - `script.js` — scroll reveals and method interaction
 - `assets/` — paper figures, PDFs, video, and social preview
 
-The current author line is intentionally anonymous and can be replaced after the review period.
+The author and affiliation block matches the camera-ready preprint.
