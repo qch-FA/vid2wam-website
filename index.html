@@ -20,7 +20,7 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&amp;display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260805c" />
+    <link rel="stylesheet" href="styles.css?v=20260808a" />
   </head>
   <body>
     <main>
@@ -106,25 +106,32 @@
         </p>
       </section>
 
-      <section class="container project-section framework-section">
+      <section class="container project-section framework-section" id="framework">
         <h2>Framework</h2>
         <figure class="figure-frame">
-          <img
-            src="assets/method.png"
-            alt="Vid2WAM training architecture with a frozen video teacher and inverse dynamics model supervising a trainable student, followed by student-only inference."
-          />
-          <figcaption class="framework-caption">
-            Teacher-generated future latents and IDM-derived pseudo-actions complement real demonstrations during
-            training. At inference time, the video teacher and IDM are discarded, leaving only the student action policy.
-          </figcaption>
+          <div class="framework-image-crop">
+            <img
+              src="assets/method.png"
+              alt="Vid2WAM training architecture with a frozen video teacher and inverse dynamics model supervising a trainable student, followed by student-only inference."
+            />
+          </div>
         </figure>
+        <p class="framework-description">
+          Teacher-generated future latents and IDM-derived pseudo-actions complement real demonstrations during
+          training. At inference time, the video teacher and IDM are discarded, leaving only the student action policy.
+        </p>
       </section>
 
       <section class="container project-section" id="results">
         <h2>Simulation Results</h2>
         <p class="section-intro">
-          Vid2WAM consistently improves task success in low-data and novel-task settings. All charts below visualize
-          the values reported in the paper tables; success rate is in percent and higher is better.
+          We consider two complementary evaluation regimes. In the <strong>low-data regime</strong>, each task provides
+          only 10 expert trajectories, with Vid2WAM receiving an equal number of offline teacher-generated
+          trajectories. In the <strong>novel-task regime</strong>, we withhold all expert trajectories from selected
+          target tasks: baselines are directly transferred from the remaining tasks, whereas Vid2WAM uses only
+          target-task instructions and initial observations to generate pseudo supervision. These regimes respectively
+          evaluate policy learning under scarce real demonstrations and adaptation to novel tasks without target-task
+          expert supervision. All charts below report success rate in percent; higher is better.
         </p>
 
         <div class="legend" aria-label="Chart legend">

@@ -163,6 +163,17 @@ h2 {
 
 .figure-frame img { width: 100%; }
 
+.framework-image-crop {
+  width: 100%;
+  aspect-ratio: 2134 / 900;
+  overflow: hidden;
+}
+
+.framework-image-crop img {
+  max-width: none;
+  transform: translateY(-5.83%);
+}
+
 .teaser-crop {
   width: 100%;
   aspect-ratio: 1484 / 797;
@@ -185,8 +196,11 @@ figcaption {
   line-height: 1.5;
 }
 
-.framework-caption {
+.framework-description {
   max-width: 940px;
+  margin: 16px auto 0;
+  color: var(--text);
+  text-align: center;
 }
 
 .result-subheading {
