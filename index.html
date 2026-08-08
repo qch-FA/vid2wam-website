@@ -20,7 +20,7 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&amp;display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260808d" />
+    <link rel="stylesheet" href="styles.css?v=20260808e" />
   </head>
   <body>
     <nav class="site-nav" aria-label="Section navigation">
@@ -28,7 +28,6 @@
         <a class="site-brand" href="#top">Vid2WAM</a>
         <div class="site-nav-links">
           <a href="#abstract">Abstract</a>
-          <a href="#framework">Framework</a>
           <a href="#results">Simulation Results</a>
           <a href="#predictions">Future Predictions</a>
           <a href="#real-world">Real-World</a>
@@ -64,17 +63,17 @@
 
       <section class="container lead-teaser">
         <figure class="teaser">
-          <div class="teaser-crop">
+          <div class="method-teaser-crop">
             <img
-              src="assets/overview.png"
-              alt="Vid2WAM overview comparing direct video-model control, a standard World Action Model, and offline distillation into a compact action policy."
+              src="assets/method.png"
+              alt="Vid2WAM training architecture with a frozen video teacher and inverse dynamics model supervising a trainable student, followed by student-only inference."
             />
           </div>
-          <figcaption>
-            Vid2WAM transfers predictive video priors into an efficient World Action Model through offline
-            distillation, improving novel-task success without running the teacher during deployment.
-          </figcaption>
         </figure>
+        <p class="method-description">
+          Teacher-generated future latents and IDM-derived pseudo-actions complement real demonstrations during
+          training. At inference time, the video teacher and IDM are discarded, leaving only the student action policy.
+        </p>
       </section>
 
       <section class="container project-summary" aria-label="Contributions">
@@ -115,22 +114,6 @@
           are discarded, leaving only the WAM student for efficient deployment. Simulation and real-world experiments
           demonstrate that Vid2WAM improves novel-task generalization and data efficiency under limited expert
           demonstrations while preserving low-latency inference.
-        </p>
-      </section>
-
-      <section class="container project-section framework-section" id="framework">
-        <h2>Framework</h2>
-        <figure class="figure-frame">
-          <div class="framework-image-crop">
-            <img
-              src="assets/method.png"
-              alt="Vid2WAM training architecture with a frozen video teacher and inverse dynamics model supervising a trainable student, followed by student-only inference."
-            />
-          </div>
-        </figure>
-        <p class="framework-description">
-          Teacher-generated future latents and IDM-derived pseudo-actions complement real demonstrations during
-          training. At inference time, the video teacher and IDM are discarded, leaving only the student action policy.
         </p>
       </section>
 

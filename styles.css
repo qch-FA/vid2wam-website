@@ -218,10 +218,6 @@ h2 {
 
 .project-section { padding-top: 72px; }
 
-.framework-section {
-  width: min(calc(100% - 32px), 1240px);
-}
-
 .teaser,
 .figure-frame,
 .chart-card,
@@ -229,28 +225,16 @@ h2 {
 
 .figure-frame img { width: 100%; }
 
-.framework-image-crop {
+.method-teaser-crop {
   width: 100%;
   aspect-ratio: 2134 / 900;
   overflow: hidden;
 }
 
-.framework-image-crop img {
+.method-teaser-crop img {
+  width: 100%;
   max-width: none;
   transform: translateY(-5.83%);
-}
-
-.teaser-crop {
-  width: 100%;
-  aspect-ratio: 1484 / 797;
-  overflow: hidden;
-  background: #fff;
-}
-
-.teaser-crop img {
-  width: 143.8%;
-  max-width: none;
-  transform: translate(-6.94%, -20%);
 }
 
 figcaption {
@@ -262,7 +246,7 @@ figcaption {
   line-height: 1.5;
 }
 
-.framework-description {
+.method-description {
   max-width: 940px;
   margin: 16px auto 0;
   color: var(--text);
