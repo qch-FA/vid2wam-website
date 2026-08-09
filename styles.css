@@ -164,6 +164,10 @@ h1 span { color: var(--blue); }
   min-width: 104px;
   padding: 8px 18px;
   border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
   color: white;
   background: #343434;
   text-decoration: none;
@@ -175,6 +179,22 @@ h1 span { color: var(--blue); }
 .links a:focus-visible { background: var(--blue); }
 
 .links a[data-placeholder] { cursor: default; }
+
+.link-icon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+}
+
+.paper-icon {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.55;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.github-icon { fill: currentColor; }
 
 .lead-teaser { padding-top: 42px; }
 
