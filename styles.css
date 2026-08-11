@@ -468,6 +468,29 @@ figcaption {
 .latency-row i.motus { background: var(--motus); }
 .latency-row i.teacher { background: #3d4651; }
 
+.citation-intro {
+  max-width: 940px;
+  margin: 0 auto 14px;
+}
+
+.citation-block {
+  max-width: 940px;
+  margin: 0 auto;
+  padding: 22px 24px;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: #303846;
+  background: var(--soft);
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  text-align: left;
+  white-space: pre;
+}
+
+.citation-block code { font: inherit; }
+
 footer {
   margin-top: 80px !important;
   padding: 28px 0 42px;
@@ -511,4 +534,5 @@ footer p { margin: 2px 0; }
   .chart { height: 280px; }
   .bars { height: 238px; }
   .latency-row { grid-template-columns: 88px 1fr 74px; gap: 8px; }
+  .citation-block { padding: 18px; font-size: 0.76rem; }
 }
